@@ -4,6 +4,7 @@ class Draggable {
     }
 
     validateDOM(dom) { // 校验dom有效性
+        console.log(this);
         if (!dom) {
             console.error('目标元素为空！');
             return
@@ -21,18 +22,25 @@ class Draggable {
         }
         const trueDom = dom instanceof HTMLDivElement ? dom : dom[0]
         const styleDeclaration = window.getComputedStyle(trueDom, null)
-        console.log(styleDeclaration.position);
-        console.log(styleDeclaration.left);
+        this.mouseClientX = null;
+        this.mouseClientY = null;
+        this.dom = dom;
+        // todo：需要判断传入的dom是用margin定位位置 ，还是top,left etc定位位置.
+        this.left = parseFloat(styleDeclaration.left)
+        this.top = parseFloat(styleDeclaration.top)
+        console.log(this);
+    }
 
-        let mouseClientX = null
-        trueDom.addEventListener('mousedown', function() {
+    mouseDownFun() {
+        this.dom.addEventListener('mousedown', function (e) {
             console.log(this);
         })
+    }
 
-        trueDom.addEventListener('mousemove', function() {
+    mouseMoveFun() {
+        this.dom.addEventListener('mousemove', function (e) {
             console.log(this);
         })
-
     }
 }
 
