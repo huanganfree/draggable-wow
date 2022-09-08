@@ -1,5 +1,9 @@
 /**
- * 注：这里采用在document绑定事件，防止鼠标快速滑动脱离元素不滑动。
+ * 注：1.这里采用在document绑定事件，防止鼠标快速滑动脱离元素不滑动。
+ * 
+ * ToDo：1.需要判断传入的dom是用margin定位位置 ，还是top,left .etc定位位置.（这里暂时不做讨论）
+ *       2.如何做事件销毁
+ * 
  */
 
 class Draggable {
@@ -32,7 +36,7 @@ class Draggable {
         this.positionX = positionX;
         this.positionY = positionY;
         this.dom = trueDom;
-        // ToDo：需要判断传入的dom是用margin定位位置 ，还是top,left .etc定位位置.
+        
         this.originX = parseFloat(styleDeclaration[this.positionX])
         this.originY = parseFloat(styleDeclaration[this.positionY])
         this.styleDeclaration = styleDeclaration
