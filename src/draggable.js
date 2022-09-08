@@ -1,10 +1,14 @@
+/**
+ * 注：这里采用在document绑定事件，防止鼠标快速滑动脱离元素不滑动。
+ */
+
 class Draggable {
-    constructor(dom) {
-        this.validateDOM(dom);
+    // 默认从元素的marginleft ,margintop拖动定位，默认值也是方便使用
+    constructor(dom, positionX = 'marginLeft', positionY = 'marginTop') {
+        this.validateDOM(dom, positionX, positionY);
     }
 
-    validateDOM(dom) { // 校验dom有效性
-        console.log(this);
+    validateDOM(dom, positionX, positionY) { // 校验dom有效性
         if (!dom) {
             console.error('目标元素为空！');
             return
@@ -22,25 +26,52 @@ class Draggable {
         }
         const trueDom = dom instanceof HTMLDivElement ? dom : dom[0]
         const styleDeclaration = window.getComputedStyle(trueDom, null)
-        this.mouseClientX = null;
-        this.mouseClientY = null;
-        this.dom = dom;
-        // todo：需要判断传入的dom是用margin定位位置 ，还是top,left etc定位位置.
-        this.left = parseFloat(styleDeclaration.left)
-        this.top = parseFloat(styleDeclaration.top)
-        console.log(this);
+
+        this.mouseClientX = 0;
+        this.mouseClientY = 0;
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.dom = trueDom;
+        // ToDo：需要判断传入的dom是用margin定位位置 ，还是top,left .etc定位位置.
+        this.originX = parseFloat(styleDeclaration[this.positionX])
+        this.originY = parseFloat(styleDeclaration[this.positionY])
+        this.styleDeclaration = styleDeclaration
+
+        // dom事件初始入口
+        this.mouseDownFun()
+        console.log(this.originX, this.originY);
+
     }
 
     mouseDownFun() {
-        this.dom.addEventListener('mousedown', function (e) {
-            console.log(this);
-        })
+        document.onmousedown = (e = {}) => { // 箭头函数，确保this为实例对象
+            this.mouseMoveFun()
+            this.mouseUpFun();
+            const { clientX, clientY } = e
+            this.mouseClientX = clientX
+            this.mouseClientY = clientY
+            this.originX = parseFloat(this.styleDeclaration[this.positionX])
+            this.originY = parseFloat(this.styleDeclaration[this.positionY])
+        }
     }
 
     mouseMoveFun() {
-        this.dom.addEventListener('mousemove', function (e) {
+        document.onmousemove = (e = {}) => {
+            const { clientX, clientY } = e
+            const computeX = clientX - this.mouseClientX + this.originX
+            const computeY = clientY - this.mouseClientY + this.originY
+            this.dom.style[this.positionX] = computeX + 'px'
+            this.dom.style[this.positionY] = computeY + 'px'
+            
+        }
+    }
+
+    mouseUpFun() {
+        document.onmouseup = (e) => {
             console.log(this);
-        })
+            document.onmousemove = null
+            document.onmouseup = null
+        }
     }
 }
 
