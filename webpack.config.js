@@ -1,22 +1,7 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpackDevConfig = require('./config/webpack.dev');
+const webpackProdConfig = require('./config/webpack.prod')
 
-module.exports = {
-    entry: {
-      main: './src/main.js',
-    },
-    mode: 'development',
-    output: {
-      filename: 'dev.[name].[contenthash].js',
-      path: __dirname + '/dist',
-    },
-    plugins: [new HtmlWebpackPlugin({
-      template: 'index.html'
-    })],
-    devServer: {
-      compress: true,
-      port: 9000,
-      hot: true,
-      open: true
-    }
+
+module.exports = (env) =>  {
+  return env.production ? webpackProdConfig : webpackDevConfig
 };

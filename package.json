@@ -1,14 +1,17 @@
 {
   "name": "draggable",
   "version": "1.0.0",
-  "description": "a drag library by native js",
+  "description": "a drag library completed by native js",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "build": "webpack --env production --progress"
   },
   "keywords": [
     "drag",
-    "draggable"
+    "draggable",
+    "drag-move",
+    "mousemove"
   ],
   "author": "huangan",
   "license": "MIT",
