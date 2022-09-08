@@ -2,9 +2,10 @@
  * 注：1.这里采用在document绑定事件，防止鼠标快速滑动脱离元素不滑动。
  * 
  * ToDo：1.需要判断传入的dom是用margin定位位置 ，还是top,left .etc定位位置.（这里暂时不做讨论）
- *       2.如何做事件销毁
- * 
+ *       2.如何做事件销毁（已做）
+ *       3.节流
  */
+import { throttle } from './utils/throttle'
 
 class Draggable {
     // 默认从元素的marginleft ,margintop拖动定位，默认值也是方便使用
@@ -43,7 +44,6 @@ class Draggable {
 
         // dom事件初始入口
         this.mouseDownFun()
-        console.log(this.originX, this.originY);
 
     }
 
@@ -72,11 +72,10 @@ class Draggable {
 
     mouseUpFun() {
         document.onmouseup = (e) => {
-            console.log(this);
             document.onmousemove = null
             document.onmouseup = null
         }
     }
 }
 
-export { Draggable }
+export  {Draggable} 
