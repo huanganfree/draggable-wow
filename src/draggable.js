@@ -1,19 +1,28 @@
-/**
- * 注：1.这里采用在document绑定事件，防止鼠标快速滑动脱离元素不滑动。
+/**注：
+ * 1.这里采用在document绑定事件，防止鼠标快速滑动脱离元素不滑动。
  * 
- * ToDo：1.需要判断传入的dom是用margin定位位置 ，还是top,left .etc定位位置.（这里暂时不做讨论）
- *       2.如何做事件销毁（已做）
- *       3.节流
+ * ToDo：
+ * 1.需要判断传入的dom是用margin定位位置 ，还是top,left .etc定位位置.（这里暂时不做讨论）
+ * 2.如何做事件销毁（已做）
+ * 3.节流
  */
+
 import { throttle } from './utils/throttle'
+
+// 默认值
+const defaultOpt = {
+    delay: 20,
+    positionX: 'marginLeft', 
+    positionY: 'marginTop'
+}
 
 class Draggable {
     // 默认从元素的marginleft ,margintop拖动定位，默认值也是方便使用
-    constructor(dom, positionX = 'marginLeft', positionY = 'marginTop') {
-        this.validateDOM(dom, positionX, positionY);
+    constructor(dom, options = {}) {
+        this.validateDOM(dom, options);
     }
 
-    validateDOM(dom, positionX, positionY) { // 校验dom有效性
+    validateDOM(dom, options) { // 校验dom有效性
         if (!dom) {
             console.error('目标元素为空！');
             return
@@ -32,11 +41,13 @@ class Draggable {
         const trueDom = dom instanceof HTMLDivElement ? dom : dom[0]
         const styleDeclaration = window.getComputedStyle(trueDom, null)
 
+        const { positionX, positionY, delay } = Object.assign(defaultOpt,  options)
+        this.dom = trueDom;
         this.mouseClientX = 0;
         this.mouseClientY = 0;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.dom = trueDom;
+        this.delay = delay
         
         this.originX = parseFloat(styleDeclaration[this.positionX])
         this.originY = parseFloat(styleDeclaration[this.positionY])
@@ -60,14 +71,15 @@ class Draggable {
     }
 
     mouseMoveFun() {
-        document.onmousemove = (e = {}) => {
+        const self = this
+        const handleFunc = (e = {}) => {
             const { clientX, clientY } = e
-            const computeX = clientX - this.mouseClientX + this.originX
-            const computeY = clientY - this.mouseClientY + this.originY
-            this.dom.style[this.positionX] = computeX + 'px'
-            this.dom.style[this.positionY] = computeY + 'px'
-            
+            const computeX = clientX - self.mouseClientX + self.originX
+            const computeY = clientY - self.mouseClientY + self.originY
+            self.dom.style[self.positionX] = computeX + 'px'
+            self.dom.style[self.positionY] = computeY + 'px'
         }
+        document.onmousemove = throttle(handleFunc, this.delay)
     }
 
     mouseUpFun() {
