@@ -1,6 +1,6 @@
-/**
- * TODO: 1.每次build清除dist目录
- * 2.自动移除debugger，log语句
+/** TODO: 
+ * 1.每次build清除dist目录
+ * 2.自动移除debugger，log等调试语句
  */
 const path = require('path')
 

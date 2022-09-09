@@ -11,7 +11,13 @@
     "drag",
     "draggable",
     "drag-move",
-    "mousemove"
+    "mousemove",
+    "拖拽",
+    "鼠标拖动"
+  ],
+  "files": [
+    "dist",
+    "src"
   ],
   "author": "huangan",
   "license": "MIT",
@@ -23,5 +29,10 @@
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.10.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huanganfree/draggable-wow"
+  },
+  "homepage": "https://github.com/huanganfree/draggable-wow#readme"
 }
