@@ -58,7 +58,7 @@ new Draggable(dom, {
 
 ### 在线Demo
 
-[地址]: https://codesandbox.io/s/affectionate-merkle-50bl9o?file=/src/App.vue
+[预览地址](https://codesandbox.io/s/affectionate-merkle-50bl9o?file=/src/App.vue)
 
 
 
