@@ -4,7 +4,8 @@
  * ToDo：
  * 1.需要判断传入的dom是用margin定位位置 ，还是top,left .etc定位位置.（这里暂时不做讨论）
  * 2.如何做事件销毁（已做）
- * 3.节流
+ * 3.节流（已做）
+ * 4.支持移动端
  */
 
 import { throttle } from './utils/throttle'
@@ -90,4 +91,4 @@ class Draggable {
     }
 }
 
-export  {Draggable} 
+export  { Draggable } 

@@ -1,6 +1,7 @@
 /** TODO: 
  * 1.每次build清除dist目录
  * 2.自动移除debugger，log等调试语句
+ * 3.script标签引入，直接挂载到window上。
  */
 const path = require('path')
 
@@ -10,11 +11,12 @@ module.exports = {
   },
   mode: 'production',
   output: {
-    filename: 'draggable.min.js',
+    filename: 'index.js',
     path: path.resolve('./dist'),
     library: {
       name: 'Draggable',
-      type: 'umd'
+      type: 'umd',
+      export: 'Draggable' // 这里配置的是哪个暴露的模块，挂载在模块的library.name上
     }
   },
   module: {

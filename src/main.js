@@ -1,11 +1,6 @@
-// import { Draggable } from '../dist/draggable.min.js'
-
-// import { Draggable } from './draggable'
-
-import { Draggable } from 'draggable-wow'
+import Draggable from '../dist/index.js'
 
 const dom = document.getElementsByClassName('box')
 
 new Draggable(dom, {
-    delay: 10
 })

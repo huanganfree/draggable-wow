@@ -1,8 +1,8 @@
 {
   "name": "draggable-wow",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "a drag library completed by native js",
-  "main": "./dist/draggable.min.js",
+  "main": "./dist/index.js",
   "scripts": {
     "dev": "webpack serve",
     "build": "webpack --env production --progress"
