@@ -1,9 +1,13 @@
 # draggable-wow
-### 简介
+## 简介
 
 一款原生js编写的拖拽移动插件。
 
-### 功能点
+## 在线Demo
+
+[预览地址](https://codesandbox.io/s/affectionate-merkle-50bl9o?file=/src/App.vue)
+
+## 功能点
 
 - 快速拖动不“掉线”
 
@@ -11,7 +15,7 @@
 - 拖拽节流
 - 事件自动销毁
 
-### 使用方法
+## 使用方法
 
 通过new 对象的形式，使用该插件。构造函数接受两个参数：1.一个是必传的dom目标元素。2.另一个是配置项（Object类型）。详情见下方：
 
@@ -28,7 +32,7 @@
 | ----- | ------------ | -------- | ------ |
 | delay | 拖拽延迟(ms) | Number   | 20     |
 
-### 安装方法
+## 安装方法
 
 - npm安装
 
@@ -53,13 +57,6 @@ new Draggable(dom, {
     new Draggable(dom, { delay: 20 })
  </script>
 ```
-
-
-
-### 在线Demo
-
-[预览地址](https://codesandbox.io/s/affectionate-merkle-50bl9o?file=/src/App.vue)
-
 
 
 
