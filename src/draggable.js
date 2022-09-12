@@ -61,6 +61,7 @@ class Draggable {
 
     mouseDownFun() {
         document.onmousedown = (e = {}) => { // 箭头函数，确保this为实例对象
+            if(e.target !== this.dom) return 
             this.mouseMoveFun()
             this.mouseUpFun();
             const { clientX, clientY } = e

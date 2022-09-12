@@ -1,7 +1,7 @@
 /** TODO: 
  * 1.每次build清除dist目录
  * 2.自动移除debugger，log等调试语句
- * 3.script标签引入，直接挂载到window上。
+ * 3.script标签引入，直接挂载到window上。（已做）
  */
 const path = require('path')
 

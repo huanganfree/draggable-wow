@@ -1,4 +1,4 @@
-import Draggable from '../dist/index.js'
+import { Draggable } from './draggable'
 
 const dom = document.getElementsByClassName('box')
 

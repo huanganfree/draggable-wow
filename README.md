@@ -57,7 +57,3 @@ new Draggable(dom, {
     new Draggable(dom, { delay: 20 })
  </script>
 ```
-
-
-
-
