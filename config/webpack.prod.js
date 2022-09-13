@@ -16,7 +16,7 @@ module.exports = {
     library: {
       name: 'Draggable',
       type: 'umd',
-      export: 'Draggable' // 这里配置的是哪个暴露的模块，挂载在模块的library.name上
+      export: 'default' // 这里配置的是哪个暴露的模块，挂载在模块的library.name上
     }
   },
   module: {
