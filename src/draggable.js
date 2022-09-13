@@ -13,7 +13,7 @@ import { throttle } from './utils/throttle'
 // 默认值
 const defaultOpt = {
     delay: 20,
-    positionX: 'marginLeft', 
+    positionX: 'marginLeft',
     positionY: 'marginTop'
 }
 
@@ -42,14 +42,16 @@ class Draggable {
         const trueDom = dom instanceof HTMLDivElement ? dom : dom[0]
         const styleDeclaration = window.getComputedStyle(trueDom, null)
 
-        const { positionX, positionY, delay } = Object.assign(defaultOpt,  options)
+        const { positionX, positionY, delay } = Object.assign(defaultOpt, options)
         this.dom = trueDom;
+        // 禁止用户选中目标元素
+        this.dom.style['user-select'] = 'none';
         this.mouseClientX = 0;
         this.mouseClientY = 0;
         this.positionX = positionX;
         this.positionY = positionY;
         this.delay = delay
-        
+
         this.originX = parseFloat(styleDeclaration[this.positionX])
         this.originY = parseFloat(styleDeclaration[this.positionY])
         this.styleDeclaration = styleDeclaration
@@ -61,14 +63,15 @@ class Draggable {
 
     mouseDownFun() {
         document.onmousedown = (e = {}) => { // 箭头函数，确保this为实例对象
-            if(e.target !== this.dom) return 
-            this.mouseMoveFun()
-            this.mouseUpFun();
-            const { clientX, clientY } = e
-            this.mouseClientX = clientX
-            this.mouseClientY = clientY
-            this.originX = parseFloat(this.styleDeclaration[this.positionX])
-            this.originY = parseFloat(this.styleDeclaration[this.positionY])
+            if (e.target === this.dom || this.dom.contains(e.target)) {// 必须有contains的判断
+                this.mouseMoveFun();
+                this.mouseUpFun();
+                const { clientX, clientY } = e;
+                this.mouseClientX = clientX;
+                this.mouseClientY = clientY;
+                this.originX = parseFloat(this.styleDeclaration[this.positionX]);
+                this.originY = parseFloat(this.styleDeclaration[this.positionY]);
+            }
         }
     }
 
@@ -92,4 +95,4 @@ class Draggable {
     }
 }
 
-export  { Draggable } 
+export default Draggable

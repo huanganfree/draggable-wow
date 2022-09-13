@@ -10,7 +10,6 @@
 ## 功能点
 
 - 快速拖动不“掉线”
-
 - 支持拖拽延迟
 - 拖拽节流
 - 事件自动销毁
@@ -36,7 +35,15 @@
 
 - npm安装
 
+安装
+
+`npm i draggable-wow`
+
+引入组件
+
+
 ```javascript
+
 // 引入包体
 import Draggable from 'draggable-wow' 
 
@@ -54,6 +61,6 @@ new Draggable(dom, {
 
 <script>
     var dom = document.getElementsByClassName('box')
-    new Draggable(dom, { delay: 20 })
+    new Draggable(dom, { delay: 30 })
  </script>
 ```
