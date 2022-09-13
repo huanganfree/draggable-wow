@@ -44,8 +44,7 @@ class Draggable {
 
         const { positionX, positionY, delay } = Object.assign(defaultOpt, options)
         this.dom = trueDom;
-        // 禁止用户选中目标元素
-        this.dom.style['user-select'] = 'none';
+        
         this.mouseClientX = 0;
         this.mouseClientY = 0;
         this.positionX = positionX;
@@ -55,6 +54,7 @@ class Draggable {
         this.originX = parseFloat(styleDeclaration[this.positionX])
         this.originY = parseFloat(styleDeclaration[this.positionY])
         this.styleDeclaration = styleDeclaration
+        
 
         // dom事件初始入口
         this.mouseDownFun()
@@ -64,6 +64,10 @@ class Draggable {
     mouseDownFun() {
         document.onmousedown = (e = {}) => { // 箭头函数，确保this为实例对象
             if (e.target === this.dom || this.dom.contains(e.target)) {// 必须有contains的判断
+                // 目标元素最初的user-select值保留下
+                this.OriginUserSelectValue = this.styleDeclaration['user-select'];
+                // 禁止选中
+                this.dom.style['user-select'] = 'none';
                 this.mouseMoveFun();
                 this.mouseUpFun();
                 const { clientX, clientY } = e;
@@ -89,6 +93,8 @@ class Draggable {
 
     mouseUpFun() {
         document.onmouseup = (e) => {
+            // 目标元素最初的user-select值重新取出
+            this.dom.style['user-select'] = this.OriginUserSelectValue;
             document.onmousemove = null
             document.onmouseup = null
         }
