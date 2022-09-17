@@ -35,24 +35,20 @@
 
 - npm安装
 
-安装
+  安装
 
-`npm i draggable-wow`
+  `npm i draggable-wow`
+  
+  引入
+ ```javascript
 
-引入组件
+ // 引入包体
+ import Draggable from 'draggable-wow' 
 
+ const dom = document.getElementsByClassName('box')
 
-```javascript
-
-// 引入包体
-import Draggable from 'draggable-wow' 
-
-const dom = document.getElementsByClassName('box')
-
-new Draggable(dom, {
- delay: 20
-})
-```
+ new Draggable(dom, { delay: 20 })
+ ```
 
 - CDN安装
 
