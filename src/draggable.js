@@ -8,11 +8,10 @@
  * 4.支持移动端
  */
 
-import { throttle } from './utils/throttle'
+import { rafThrottle } from './utils/rafThrottle'
 
 // 默认值
 const defaultOpt = {
-    delay: 20,
     positionX: 'marginLeft',
     positionY: 'marginTop'
 }
@@ -42,14 +41,13 @@ class Draggable {
         const trueDom = dom instanceof HTMLDivElement ? dom : dom[0]
         const styleDeclaration = window.getComputedStyle(trueDom, null)
 
-        const { positionX, positionY, delay } = Object.assign(defaultOpt, options)
+        const { positionX, positionY } = Object.assign(defaultOpt, options)
         this.dom = trueDom;
         
         this.mouseClientX = 0;
         this.mouseClientY = 0;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.delay = delay
 
         this.originX = parseFloat(styleDeclaration[this.positionX])
         this.originY = parseFloat(styleDeclaration[this.positionY])
@@ -88,7 +86,7 @@ class Draggable {
             self.dom.style[self.positionX] = computeX + 'px'
             self.dom.style[self.positionY] = computeY + 'px'
         }
-        document.onmousemove = throttle(handleFunc, this.delay)
+        document.onmousemove = rafThrottle(handleFunc)
     }
 
     mouseUpFun() {
