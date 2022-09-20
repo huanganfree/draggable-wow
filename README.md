@@ -28,10 +28,10 @@
 
 - npm安装
 
-安装
+  安装
 
-`npm i draggable-wow`
-
+  `npm i draggable-wow`
+  
 引入
 
 ```javascript
