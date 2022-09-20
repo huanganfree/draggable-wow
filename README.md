@@ -10,26 +10,19 @@
 ## 功能点
 
 - 快速拖动不“掉线”
-- 支持拖拽延迟
 - 拖拽节流
 - 事件自动销毁
 
 ## 使用方法
 
-通过new 对象的形式，使用该插件。构造函数接受两个参数：1.一个是必传的dom目标元素。2.另一个是配置项（Object类型）。详情见下方：
+通过new 对象的形式，使用该插件。构造函数接受参数：必传的dom目标元素。详情见下方：
 
 参数列表：
 
 | 参数  | 描述               | 数据类型 | 默认值 | 是否必填 |
 | ----- | ------------------ | -------- | ------ | -------- |
 | 参数1 | 拖拽移动的目标元素 | -        |        | 必传     |
-| 参数2 | 配置项             | Object   |        | 否       |
 
-参数2是配置项，Object类型，详情如下：
-
-| 参数  | 描述         | 数据类型 | 默认值 |
-| ----- | ------------ | -------- | ------ |
-| delay | 拖拽延迟(ms) | Number   | 20     |
 
 ## 安装方法
 
@@ -39,16 +32,17 @@
 
   `npm i draggable-wow`
   
-  引入
- ```javascript
+引入
 
- // 引入包体
- import Draggable from 'draggable-wow' 
+```javascript
 
- const dom = document.getElementsByClassName('box')
+// 引入包体
+import Draggable from 'draggable-wow' 
 
- new Draggable(dom, { delay: 20 })
- ```
+const dom = document.getElementsByClassName('box')
+
+new Draggable(dom)
+```
 
 - CDN安装
 
@@ -57,6 +51,6 @@
 
 <script>
     var dom = document.getElementsByClassName('box')
-    new Draggable(dom, { delay: 30 })
+    new Draggable(dom)
  </script>
 ```
