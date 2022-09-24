@@ -18,31 +18,24 @@ const defaultOpt = {
 
 class Draggable {
     // 默认从元素的marginleft ,margintop拖动定位，默认值也是方便使用
-    constructor(dom, options = {}) {
-        this.validateDOM(dom, options);
+    constructor(selectors, options = {}) {
+        this.validateDOM(selectors, options);
     }
 
-    validateDOM(dom, options) { // 校验dom有效性
-        if (!dom) {
-            console.error('目标元素为空！');
+    validateDOM(selectors, options) { // 校验CSS 选择器字符串有效性
+        if (!selectors) {
+            console.error('选择器字符串为空！');
             return
         }
-        if (dom instanceof HTMLCollection) {
-            if (!dom.length) {
-                console.error('目标元素为空！');
-                return
-            }
-            if (dom.length > 1) {
-                console.error('目标元素仅能有一个！');
-                return
-            }
-
+        const aimDom = document.querySelector(selectors)
+        if (aimDom === null) {
+            console.error('选择器无效，取不到目标元素！');
+            return
         }
-        const trueDom = dom instanceof HTMLDivElement ? dom : dom[0]
-        const styleDeclaration = window.getComputedStyle(trueDom, null)
+        const styleDeclaration = window.getComputedStyle(aimDom, null)
 
         const { positionX, positionY } = Object.assign(defaultOpt, options)
-        this.dom = trueDom;
+        this.dom = aimDom;
         
         this.mouseClientX = 0;
         this.mouseClientY = 0;
