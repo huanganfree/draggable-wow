@@ -1,7 +1,5 @@
-import Draggable from './draggable'
+// import Draggable from './draggable'
+import Draggable from '../dist/index'
 
-const dom = document.getElementsByClassName('box')
 
-new Draggable(dom, {
-    delay: 30
-})
+new Draggable('.box')
