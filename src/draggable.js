@@ -27,17 +27,18 @@ class Draggable {
             console.error('选择器字符串为空！');
             return
         }
-        const aimDom = document.querySelector(selectors)
+        const { positionX, positionY, actualDraggableEle } = Object.assign(defaultOpt, options)
+
+        const aimDom = document.querySelector(actualDraggableEle || selectors) // 两个元素判断
+        this.dom = aimDom;
         if (aimDom === null) {
             console.error('选择器无效，取不到目标元素！');
             return
         }
+        this.draggableEle = document.querySelector(selectors)
+        this.draggableEle.style.cursor = 'move'
+
         const styleDeclaration = window.getComputedStyle(aimDom, null)
-        aimDom.style.cursor = 'move'
-        const { positionX, positionY, actualDraggableEle } = Object.assign(defaultOpt, options)
-        this.dom = aimDom;
-        this.actualDraggableEleDom = document.querySelector(actualDraggableEle)
-        
         this.mouseClientX = 0;
         this.mouseClientY = 0;
         this.positionX = positionX;
@@ -54,7 +55,7 @@ class Draggable {
 
     mouseDownFun() {
         document.onmousedown = (e = {}) => { // 箭头函数，确保this为实例对象
-            if (e.target === this.dom || this.dom.contains(e.target)) {// 必须有contains的判断
+            if (e.target === this.draggableEle || this.draggableEle.contains(e.target)) {// 必须有contains的判断
                 // 目标元素最初的user-select值保留下
                 this.OriginUserSelectValue = this.styleDeclaration['user-select'];
                 // 禁止选中
