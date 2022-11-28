@@ -46,7 +46,7 @@
 // 引入包体
 import Draggable from 'draggable-wow' 
 
-new Draggable('.box')
+new Draggable('.child')// or new Draggable('.child', {actualDraggableEle: '.parent'})
 ```
 
 - CDN安装
