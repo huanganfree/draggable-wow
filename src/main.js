@@ -1,5 +1,5 @@
-// import Draggable from './draggable'
-import Draggable from '../dist/index'
+import Draggable from './draggable'
+// import Draggable from '../dist/index'
 
 
-new Draggable('.box')
+new Draggable('.content', { actualDraggableEle: '.box' })

@@ -33,9 +33,10 @@ class Draggable {
             return
         }
         const styleDeclaration = window.getComputedStyle(aimDom, null)
-
-        const { positionX, positionY } = Object.assign(defaultOpt, options)
+        aimDom.style.cursor = 'move'
+        const { positionX, positionY, actualDraggableEle } = Object.assign(defaultOpt, options)
         this.dom = aimDom;
+        this.actualDraggableEleDom = document.querySelector(actualDraggableEle)
         
         this.mouseClientX = 0;
         this.mouseClientY = 0;
@@ -46,7 +47,6 @@ class Draggable {
         this.originY = parseFloat(styleDeclaration[this.positionY])
         this.styleDeclaration = styleDeclaration
         
-
         // dom事件初始入口
         this.mouseDownFun()
 
