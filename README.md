@@ -45,8 +45,10 @@
 
 // 引入包体
 import Draggable from 'draggable-wow' 
+// 注意：一定要在元素挂载后，再选取
 
-new Draggable('.child')// or new Draggable('.child', {actualDraggableEle: '.parent'}) 元素child在元素parent内
+// Vue中一般放在nextTick中较为稳妥
+new Draggable('.child') // new Draggable('.child', {actualDraggableEle: '.parent'}) 元素child在元素parent内
 ```
 
 - CDN安装
@@ -55,6 +57,7 @@ new Draggable('.child')// or new Draggable('.child', {actualDraggableEle: '.pare
 <script src="https://unpkg.com/draggable-wow/dist/index.js"></script>
 
 <script>
+   // 注意：一定要在元素挂载后，再选取
     new Draggable('.box')
  </script>
 ```
