@@ -13,7 +13,8 @@ import { rafThrottle } from './utils/rafThrottle'
 // 默认值
 const defaultOpt = {
     positionX: 'marginLeft',
-    positionY: 'marginTop'
+    positionY: 'marginTop',
+    parentEle: '' // 被拖拽元素的父元素
 }
 
 class Draggable {
@@ -27,9 +28,9 @@ class Draggable {
             console.error('选择器字符串为空！');
             return
         }
-        const { positionX, positionY, actualDraggableEle } = Object.assign(defaultOpt, options)
+        const { positionX, positionY, parentEle } = Object.assign(defaultOpt, options)
 
-        const aimDom = document.querySelector(actualDraggableEle || selectors) // 两个元素判断
+        const aimDom = document.querySelector(parentEle || selectors) // 两个元素判断
         this.dom = aimDom;
         if (aimDom === null) {
             console.error('选择器无效，取不到目标元素！');
