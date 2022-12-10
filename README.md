@@ -20,16 +20,18 @@
 
 参数列表：
 
-| 参数  | 描述                | 数据类型 | 默认值 | 是否必填 |
-| ----- | ------------------- | -------- | ------ | -------- |
-| 参数1 | CSS字符串选择器     | String   |        | 必传     |
-| 参数2 | options（选项配置） | Object   | {}     | 否       |
+| 参数  | 描述                | 数据类型                  | 默认值 | 是否必填 |
+| ----- | ------------------- | ------------------------- | ------ | -------- |
+| 参数1 | 实际被拖拽元素      | String（CSS字符串选择器） |        | 必传     |
+| 参数2 | options（选项配置） | Object                    | {}     | 否       |
 
 参数2选项配置说明：
 
-| 选项               | 描述                              | 数据类型 |
-| ------------------ | --------------------------------- | -------- |
-| actualDraggableEle | 实际被移动的元素, CSS字符串选择器。如不传，实际移动元素则为参数1 | String   |
+| 选项      | 描述                                                         | 数据类型                  |
+| --------- | ------------------------------------------------------------ | ------------------------- |
+| parentEle | 实际被拖拽元素的父元素。该参数用于：拖动元素只能某个局部区域被拖拽。 | String（CSS字符串选择器） |
+
+***使用注意点:***必须确保选取的DOM元素已经加载完毕
 
 ## 安装方法
 
@@ -45,10 +47,8 @@
 
 // 引入包体
 import Draggable from 'draggable-wow' 
-// 注意：一定要在元素挂载后，再选取
-
-// Vue中一般放在nextTick中较为稳妥
-new Draggable('.child') // new Draggable('.child', {actualDraggableEle: '.parent'}) 元素child在元素parent内
+// 使用
+new Draggable('.content', { parentEle: '.box' })
 ```
 
 - CDN安装
@@ -57,7 +57,6 @@ new Draggable('.child') // new Draggable('.child', {actualDraggableEle: '.parent
 <script src="https://unpkg.com/draggable-wow/dist/index.js"></script>
 
 <script>
-   // 注意：一定要在元素挂载后，再选取
-    new Draggable('.box')
+    new Draggable('.content', { parentEle: '.box' })
  </script>
 ```
