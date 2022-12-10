@@ -1,6 +1,6 @@
 {
   "name": "draggable-wow",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "a drag library completed by native js",
   "main": "./dist/index.js",
   "scripts": {
