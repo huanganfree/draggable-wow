@@ -2,6 +2,8 @@
 ## 简介
 
 一款原生js编写的拖拽移动插件。
+## npm地址
+https://www.npmjs.com/package/draggable-wow
 
 ## 在线Demo
 
